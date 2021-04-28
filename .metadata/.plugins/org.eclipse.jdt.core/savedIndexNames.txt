@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+C:\Users\luisa\Desktop\juego covid\.metadata\.plugins\org.eclipse.jdt.core
+3204985184.index
+2022854247.index

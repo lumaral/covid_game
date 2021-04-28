@@ -1,0 +1,146 @@
+package juego_covid;
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+public class PanelCovidGame extends JPanel {
+	private final int WIDTH = 600, HEIGHT = 700;
+	private ImageIcon background;
+	private ImageIcon vacuna;
+	private ImageIcon persona;
+	private ImageIcon escalera, escalera2;
+	private ImageIcon virus, virus2,virus3;
+	private int xvacuna, yvacuna; //posicion vacuna
+	private int xescalera,yescalera; // posicion de la escalera 
+	private int xescalera2,yescalera2; // posicion de la segunda escalera
+	private int xvirus,yvirus;// posicion primer virus
+	private int xvirus2,yvirus2;// posicion segundo virus
+	private int xvirus3,yvirus3;//posicion tercer virus
+	private int xpersona,ypersona; //posicion persona 
+	private int movimientox; // sera el movimiento de los virus 
+	private Dimension AJUSTE;
+	private Timer timer1,timer2,timer3;
+	private int DELAY=20; // retraso del timer
+	
+	public PanelCovidGame() {
+		
+		timer1 = new Timer(DELAY, new TimerListener1());
+		timer2 = new Timer(DELAY, new TimerListener2());
+		timer3 = new Timer(DELAY, new TimerListener3());
+		
+// Ahora vamos a introducir los diferentes elementos que forman nuestro juego y mas adelante los posicionaremos correctamente
+		
+		background = new ImageIcon ("images_background.png");
+		vacuna = new ImageIcon ("images_vacuna.png");
+		escalera = new ImageIcon ("images_escalera1.png");
+		escalera2 = new ImageIcon ("images_escalera2.png");
+		virus = new ImageIcon ("images_covid.png");
+		virus2 = new ImageIcon ("images_covid.png");
+		virus3 = new ImageIcon ("images_covid.png");
+		persona = new ImageIcon ("images_prota.png");
+		
+//Vamos a establecer posiciones de los elementos introducidos
+		xvacuna=300; 
+		yvacuna=130;
+		
+		xescalera=100;
+		yescalera=175;
+		xescalera2=320;
+		yescalera2=350;
+		
+		xvirus = 150;
+		yvirus = 450;
+		xvirus2 = 100;
+		yvirus2 = 250;
+		xvirus3 = 100;
+		yvirus3 = 50;
+		
+		xpersona = 30;
+		ypersona = 450;
+		
+//fijo una velocidaad de moviviento de los virus
+		movimientox=5;
+		
+		setPreferredSize(new Dimension(WIDTH,HEIGHT));
+		timer1.start();
+		timer2.start();
+		timer3.start();
+	}
+	public void paintComponent(Graphics page){
+		
+		super.paintComponent(page);
+		AJUSTE=getSize();
+		page.drawImage(background.getImage(), 0, 0, AJUSTE.width, AJUSTE.height, null);
+		setOpaque(true);
+		vacuna.paintIcon(this, page, xvacuna, yvacuna);
+		escalera.paintIcon(this, page, xescalera, yescalera);
+		escalera2.paintIcon(this, page, xescalera2, yescalera2);
+		virus.paintIcon(this, page, xvirus, yvirus);
+		virus2.paintIcon(this, page, xvirus2, yvirus2);
+		virus3.paintIcon(this, page, xvirus3, yvirus3);
+		persona.paintIcon(this, page, xpersona, ypersona);
+		
+	}
+		
+	
+	//Vamos a introducir movimiento a los virus
+	
+private class TimerListener1 implements ActionListener{
+		
+		public void actionPerformed(ActionEvent event){
+			xvirus += movimientox;
+			if (xvirus >= WIDTH - virus.getIconWidth() | xvirus<150){
+				movimientox = movimientox * -1;
+			}
+			
+			repaint();
+		}
+	}	
+	
+private class TimerListener2 implements ActionListener{
+	
+	public void actionPerformed(ActionEvent event){
+		xvirus2 += movimientox;
+		if (xvirus2 >= WIDTH - virus2.getIconWidth() || xvirus2<0){
+			movimientox = movimientox * -1;
+		}
+		
+		repaint();
+	}
+}
+private class TimerListener3 implements ActionListener{
+	
+	public void actionPerformed(ActionEvent event){
+		xvirus3 += movimientox;
+		if (xvirus3 >= WIDTH - virus3.getIconWidth() | xvirus3<0){
+			movimientox = movimientox * -1;
+		}
+		
+		repaint();
+	}
+}
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	
+}

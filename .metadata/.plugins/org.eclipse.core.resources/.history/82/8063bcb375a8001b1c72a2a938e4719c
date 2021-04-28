@@ -1,0 +1,17 @@
+package juego_covid;
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+public class PanelControl extends JPanel{
+
+	private JPanel controls;
+	private JSlider virusSlider, cirus1Slider, virus2Slider;
+	private JLabel virusLabel, virus2Label, virus3Label;
+	private PanelCovidGame virus, virus2, virus3;
+	
+	public PanelControl(PanelCovidGame virus, PanelCovidGame virus2,PanelCovidGame virus3) {
+		
+	}
+}
